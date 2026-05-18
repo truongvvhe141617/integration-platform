@@ -1,0 +1,11 @@
+D:\TEST\integration-platform\config-service\ConfigService.Domain\bin\Debug\net8.0\ConfigService.Domain.deps.json
+D:\TEST\integration-platform\config-service\ConfigService.Domain\bin\Debug\net8.0\ConfigService.Domain.dll
+D:\TEST\integration-platform\config-service\ConfigService.Domain\bin\Debug\net8.0\ConfigService.Domain.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.AssemblyInfoInputs.cache
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.AssemblyInfo.cs
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.csproj.CoreCompileInputs.cache
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.dll
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\refint\ConfigService.Domain.dll
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ref\ConfigService.Domain.dll

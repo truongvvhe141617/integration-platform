@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'integration-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['integration-service:8080']
+
+  - job_name: 'config-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['config-service:8080']
+
+  - job_name: 'business-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['business-service:8080']
+
+  - job_name: 'gateway'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['gateway:8080']

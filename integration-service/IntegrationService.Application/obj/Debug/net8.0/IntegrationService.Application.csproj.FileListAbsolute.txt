@@ -1,0 +1,15 @@
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.csproj.AssemblyReference.cache
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.AssemblyInfoInputs.cache
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.AssemblyInfo.cs
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.csproj.CoreCompileInputs.cache
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\bin\Debug\net8.0\IntegrationService.Application.deps.json
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\bin\Debug\net8.0\IntegrationService.Application.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\bin\Debug\net8.0\IntegrationService.Application.pdb
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\bin\Debug\net8.0\IntegrationService.Domain.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\bin\Debug\net8.0\IntegrationService.Domain.pdb
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\Integrat.BF929DD4.Up2Date
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\refint\IntegrationService.Application.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\IntegrationService.Application.pdb
+D:\TEST\integration-platform\integration-service\IntegrationService.Application\obj\Debug\net8.0\ref\IntegrationService.Application.dll

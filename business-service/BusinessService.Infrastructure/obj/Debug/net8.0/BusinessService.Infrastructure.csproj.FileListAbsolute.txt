@@ -1,0 +1,15 @@
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.csproj.AssemblyReference.cache
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.AssemblyInfoInputs.cache
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.AssemblyInfo.cs
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.csproj.CoreCompileInputs.cache
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\bin\Debug\net8.0\BusinessService.Infrastructure.deps.json
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\bin\Debug\net8.0\BusinessService.Infrastructure.dll
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\bin\Debug\net8.0\BusinessService.Infrastructure.pdb
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\bin\Debug\net8.0\BusinessService.Domain.dll
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\bin\Debug\net8.0\BusinessService.Domain.pdb
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\Business.B2291EBB.Up2Date
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.dll
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\refint\BusinessService.Infrastructure.dll
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.pdb
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\ref\BusinessService.Infrastructure.dll

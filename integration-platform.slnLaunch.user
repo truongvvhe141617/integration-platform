@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "services\\integration-service\\IntegrationService.Api\\IntegrationService.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "services\\config-service\\ConfigService.Api\\ConfigService.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "services\\business-service\\BusinessService.Api\\BusinessService.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "gateway\\Gateway.Api\\Gateway.Api.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

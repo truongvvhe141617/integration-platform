@@ -1,0 +1,68 @@
+version: '3.8'
+
+# Mỗi service deploy riêng, giao tiếp qua HTTP
+# Đổi URL bằng environment variables
+
+services:
+  # ── Gateway (entry point) ──
+  gateway:
+    build:
+      context: ../..
+      dockerfile: gateway/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      # Trỏ tới các service khác bằng tên container
+      - ReverseProxy__Clusters__integration-cluster__Destinations__d1__Address=http://integration-service:8080
+      - ReverseProxy__Clusters__config-cluster__Destinations__d1__Address=http://config-service:8080
+      - ReverseProxy__Clusters__business-cluster__Destinations__d1__Address=http://business-service:8080
+    depends_on:
+      - integration-service
+      - config-service
+      - business-service
+
+  # ── Config Service ──
+  config-service:
+    build:
+      context: ../..
+      dockerfile: services/config-service/Dockerfile
+    ports:
+      - "5002:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  # ── Integration Service ──
+  integration-service:
+    build:
+      context: ../..
+      dockerfile: services/integration-service/Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Quan trọng: trỏ tới Config Service bằng tên container
+      - Services__ConfigService=http://config-service:8080
+      # Chọn mode: "file" hoặc "service"
+      - Connectors__ConfigMode=file
+    volumes:
+      # Mount config files từ bên ngoài (đổi config không cần rebuild image)
+      - ../../services/integration-service/IntegrationService.Api/configs:/app/configs
+      # Mount plugin DLLs
+      - ../../connectors/plugins:/app/plugins
+    depends_on:
+      - config-service
+
+  # ── Business Service ──
+  business-service:
+    build:
+      context: ../..
+      dockerfile: services/business-service/Dockerfile
+    ports:
+      - "5003:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Trỏ tới Integration Service
+      - Services__IntegrationService=http://integration-service:8080
+    depends_on:
+      - integration-service

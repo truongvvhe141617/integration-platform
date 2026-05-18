@@ -1,0 +1,152 @@
+{
+  "_comment": "Ví dụ CASE PHỨC TẠP: Bank API cần custom connector DLL (signature, encryption đặc biệt)",
+  "id": "bank-abc-transfer",
+  "name": "Bank ABC Fund Transfer",
+  "connectorType": "sample-bank",
+  "version": 1,
+  "status": "Active",
+  "endpoint": {
+    "baseUrl": "https://api.bankabc.vn",
+    "defaultHeaders": {
+      "Content-Type": "application/json",
+      "X-Channel": "PARTNER"
+    }
+  },
+  "authentication": {
+    "type": "Custom",
+    "parameters": {
+      "MerchantId": "{{BANK_MERCHANT_ID}}",
+      "SecretKey": "{{BANK_SECRET_KEY}}",
+      "CertPath": "/certs/bank-abc.pfx",
+      "CertPassword": "{{BANK_CERT_PASSWORD}}"
+    }
+  },
+  "operations": [
+    {
+      "name": "transfer",
+      "httpMethod": "POST",
+      "path": "/partner/v1/fund-transfer",
+      "contentType": "application/json",
+      "requestMappings": [
+        {
+          "source": "fromAccount",
+          "target": "srcAcctNo",
+          "required": true
+        },
+        {
+          "source": "toAccount",
+          "target": "destAcctNo",
+          "required": true
+        },
+        {
+          "source": "amount",
+          "target": "txnAmount",
+          "required": true
+        },
+        {
+          "source": "currency",
+          "target": "txnCurrency",
+          "defaultValue": "VND"
+        },
+        {
+          "source": "description",
+          "target": "txnDesc",
+          "defaultValue": "Fund Transfer",
+          "transform": "ToUpper"
+        },
+        {
+          "source": "referenceId",
+          "target": "partnerRefNo",
+          "required": true
+        }
+      ],
+      "responseMappings": [
+        {
+          "source": "data.txnRefNo",
+          "target": "bankTransactionId"
+        },
+        {
+          "source": "resultCode",
+          "target": "statusCode"
+        },
+        {
+          "source": "resultMessage",
+          "target": "statusMessage"
+        },
+        {
+          "source": "data.txnDate",
+          "target": "transactionDate"
+        }
+      ],
+      "validations": [
+        {
+          "field": "fromAccount",
+          "rule": "Required",
+          "errorMessage": "Source account is required"
+        },
+        {
+          "field": "toAccount",
+          "rule": "Required",
+          "errorMessage": "Destination account is required"
+        },
+        {
+          "field": "fromAccount",
+          "rule": "Regex:^[0-9]{10,16}$",
+          "errorMessage": "Invalid account number format"
+        },
+        {
+          "field": "amount",
+          "rule": "Required",
+          "errorMessage": "Amount is required"
+        }
+      ]
+    },
+    {
+      "name": "balance-inquiry",
+      "httpMethod": "POST",
+      "path": "/partner/v1/balance",
+      "contentType": "application/json",
+      "requestMappings": [
+        {
+          "source": "accountNumber",
+          "target": "acctNo",
+          "required": true
+        }
+      ],
+      "responseMappings": [
+        {
+          "source": "data.availBal",
+          "target": "availableBalance"
+        },
+        {
+          "source": "data.currentBal",
+          "target": "currentBalance"
+        },
+        {
+          "source": "data.currency",
+          "target": "currency"
+        }
+      ],
+      "validations": []
+    }
+  ],
+  "retry": {
+    "maxRetries": 2,
+    "initialDelayMs": 2000,
+    "backoffStrategy": "Exponential",
+    "retryOnStatusCodes": [408, 500, 502, 503]
+  },
+  "circuitBreaker": {
+    "failureThreshold": 3,
+    "durationOfBreakSeconds": 60,
+    "samplingDurationSeconds": 120
+  },
+  "timeoutMs": 30000,
+  "metadata": {
+    "provider": "Bank ABC",
+    "environment": "production",
+    "team": "banking-team",
+    "requiresMtls": "true",
+    "documentation": "https://developer.bankabc.vn/docs"
+  }
+}

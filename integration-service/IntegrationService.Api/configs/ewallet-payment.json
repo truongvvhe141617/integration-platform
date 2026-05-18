@@ -1,0 +1,63 @@
+{
+  "id": "ewallet-payment",
+  "name": "E-Wallet Payment",
+  "connectorType": "generic-http",
+  "status": "Active",
+  "timeoutMs": 15000,
+
+  "endpoint": {
+    "baseUrl": "http://localhost:5002/mock",
+    "defaultHeaders": {
+      "X-Wallet-Version": "v2"
+    }
+  },
+
+  "authentication": {
+    "type": "ApiKey",
+    "parameters": {
+      "HeaderName": "X-Api-Key",
+      "ApiKey": "wallet-key-demo-123"
+    }
+  },
+
+  "operations": [
+    {
+      "name": "payment",
+      "httpMethod": "POST",
+      "path": "/ewallet/api/v2/payment",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "orderId", "target": "partner_ref_id", "required": true },
+        { "source": "amount", "target": "amount", "required": true },
+        { "source": "currency", "target": "currency", "defaultValue": "VND" },
+        { "source": "customer.phone", "target": "customer_phone", "required": true, "transform": "Trim" },
+        { "source": "customer.name", "target": "customer_name" },
+        { "source": "description", "target": "order_info", "defaultValue": "Payment" }
+      ],
+      "responseMappings": [
+        { "source": "resultCode", "target": "statusCode" },
+        { "source": "message", "target": "statusMessage" },
+        { "source": "transId", "target": "transactionId" },
+        { "source": "payUrl", "target": "paymentUrl" },
+        { "source": "amount", "target": "amount" }
+      ],
+      "validations": [
+        { "field": "orderId", "rule": "Required", "errorMessage": "Order ID is required" },
+        { "field": "amount", "rule": "Required", "errorMessage": "Amount is required" },
+        { "field": "customer.phone", "rule": "Required", "errorMessage": "Customer phone is required" }
+      ]
+    }
+  ],
+
+  "retry": {
+    "maxRetries": 2,
+    "initialDelayMs": 500,
+    "backoffStrategy": "Exponential",
+    "retryOnStatusCodes": [500, 502, 503]
+  },
+  "circuitBreaker": {
+    "failureThreshold": 5,
+    "durationOfBreakSeconds": 30,
+    "samplingDurationSeconds": 60
+  }
+}

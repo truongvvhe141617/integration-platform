@@ -1,0 +1,148 @@
+version: '3.8'
+
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  Full Stack — Infrastructure + All Services                      ║
+# ║  Lệnh: docker compose -f docker-compose.dev.yml up -d            ║
+# ║  Context: phải chạy từ thư mục gốc project                      ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+services:
+  # ── Infrastructure ──
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ip-sqlserver
+    environment:
+      SA_PASSWORD: "Dev@Password123!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports: ["1433:1433"]
+    volumes: [sqlserver-data:/var/opt/mssql]
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Dev@Password123!", "-Q", "SELECT 1", "-No"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    container_name: ip-redis
+    ports: ["6380:6379"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: ip-rabbitmq
+    ports: ["5672:5672", "15672:15672"]
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes: [rabbitmq-data:/var/lib/rabbitmq]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      retries: 10
+      start_period: 20s
+
+  # ── Services ──
+  config-service:
+    build:
+      context: ../..
+      dockerfile: services/config-service/Dockerfile
+    container_name: ip-config-service
+    ports: ["5002:8080"]
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Redis: "redis:6379"
+      Connectors__ConfigMode: file
+    depends_on:
+      redis: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      retries: 5
+      start_period: 20s
+
+  integration-service:
+    build:
+      context: ../..
+      dockerfile: services/integration-service/Dockerfile
+    container_name: ip-integration-service
+    ports: ["5001:8080"]
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Services__ConfigService: "http://config-service:8080"
+      ConnectionStrings__Redis: "redis:6379"
+      RabbitMQ__Host: rabbitmq
+      Connectors__ConfigMode: file
+    volumes:
+      - ../../services/integration-service/IntegrationService.Api/plugins:/app/plugins
+      - ../../services/integration-service/IntegrationService.Api/configs:/app/configs
+    depends_on:
+      config-service: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+
+  websocket-service:
+    build:
+      context: ../..
+      dockerfile: services/websocket-service/Dockerfile
+    container_name: ip-websocket-service
+    ports: ["5004:8080"]
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      RabbitMQ__Host: rabbitmq
+    depends_on:
+      rabbitmq: { condition: service_healthy }
+
+  gateway:
+    build:
+      context: ../..
+      dockerfile: gateway/Dockerfile
+    container_name: ip-gateway
+    ports: ["5000:8080"]
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ReverseProxy__Clusters__config-cluster__Destinations__d1__Address: "http://config-service:8080"
+      ReverseProxy__Clusters__integration-cluster__Destinations__d1__Address: "http://integration-service:8080"
+    depends_on:
+      config-service: { condition: service_healthy }
+      integration-service: { condition: service_started }
+
+  admin-ui:
+    build:
+      context: ../../admin-ui
+      dockerfile: Dockerfile
+    container_name: ip-admin-ui
+    ports: ["3000:80"]
+    depends_on: [gateway]
+
+  # ── Observability ──
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ip-prometheus
+    ports: ["9090:9090"]
+    volumes: ["../observability/prometheus.yml:/etc/prometheus/prometheus.yml"]
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ip-grafana
+    ports: ["3001:3000"]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    depends_on: [prometheus]
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: ip-jaeger
+    ports: ["16686:16686", "4317:4317", "4318:4318"]
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+
+volumes:
+  sqlserver-data:
+  redis-data:
+  rabbitmq-data:

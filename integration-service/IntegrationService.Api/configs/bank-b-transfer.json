@@ -1,0 +1,85 @@
+{
+  "id": "bank-b-transfer",
+  "name": "Bank B - Fund Transfer",
+  "connectorType": "generic-http",
+  "status": "Active",
+  "timeoutMs": 30000,
+
+  "endpoint": {
+    "baseUrl": "http://localhost:5002/mock",
+    "defaultHeaders": {
+      "X-Channel": "PARTNER",
+      "X-Bank-Code": "BANKB"
+    }
+  },
+
+  "authentication": {
+    "type": "ApiKey",
+    "parameters": {
+      "HeaderName": "X-Api-Key",
+      "ApiKey": "bank-b-secret-key-demo"
+    }
+  },
+
+  "operations": [
+    {
+      "name": "transfer",
+      "httpMethod": "POST",
+      "path": "/bank-b/v1/fund-transfer",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "fromAccount", "target": "src_acct_no", "required": true },
+        { "source": "toAccount", "target": "dest_acct_no", "required": true },
+        { "source": "amount", "target": "txn_amount", "required": true },
+        { "source": "currency", "target": "txn_ccy", "defaultValue": "VND" },
+        { "source": "description", "target": "txn_desc", "defaultValue": "Fund Transfer", "transform": "ToUpper" },
+        { "source": "referenceId", "target": "partner_ref_no", "required": true }
+      ],
+      "responseMappings": [
+        { "source": "result_code", "target": "statusCode" },
+        { "source": "result_msg", "target": "statusMessage" },
+        { "source": "data.bank_ref_no", "target": "bankTransactionId" },
+        { "source": "data.txn_date", "target": "transactionDate" },
+        { "source": "data.fee", "target": "transactionFee" },
+        { "source": "data.status", "target": "transactionStatus" }
+      ],
+      "validations": [
+        { "field": "fromAccount", "rule": "Required", "errorMessage": "Source account is required" },
+        { "field": "toAccount", "rule": "Required", "errorMessage": "Destination account is required" },
+        { "field": "amount", "rule": "Required", "errorMessage": "Amount is required" },
+        { "field": "referenceId", "rule": "Required", "errorMessage": "Reference ID is required" }
+      ]
+    },
+    {
+      "name": "balance-inquiry",
+      "httpMethod": "POST",
+      "path": "/bank-b/v1/balance",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "accountNumber", "target": "acct_no", "required": true }
+      ],
+      "responseMappings": [
+        { "source": "result_code", "target": "statusCode" },
+        { "source": "data.avail_bal", "target": "availableBalance" },
+        { "source": "data.current_bal", "target": "currentBalance" },
+        { "source": "data.currency", "target": "currency" },
+        { "source": "data.acct_name", "target": "accountName" }
+      ],
+      "validations": [
+        { "field": "accountNumber", "rule": "Required", "errorMessage": "Account number is required" }
+      ]
+    }
+  ],
+
+  "retry": {
+    "maxRetries": 2,
+    "initialDelayMs": 1000,
+    "backoffStrategy": "Exponential",
+    "retryOnStatusCodes": [500, 502, 503]
+  },
+  "circuitBreaker": {
+    "failureThreshold": 3,
+    "durationOfBreakSeconds": 60,
+    "samplingDurationSeconds": 120
+  }
+}

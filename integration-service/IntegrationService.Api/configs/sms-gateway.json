@@ -1,0 +1,39 @@
+{
+  "id": "sms-gateway",
+  "name": "SMS Gateway - Send OTP",
+  "connectorType": "generic-http",
+  "status": "Active",
+  "timeoutMs": 10000,
+  "endpoint": {
+    "baseUrl": "http://localhost:5002/mock",
+    "defaultHeaders": {}
+  },
+  "authentication": {
+    "type": "ApiKey",
+    "parameters": { "HeaderName": "X-Api-Key", "ApiKey": "sms-key-demo" }
+  },
+  "operations": [
+    {
+      "name": "send-otp",
+      "httpMethod": "POST",
+      "path": "/sms/api/send",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "phoneNumber", "target": "phone", "required": true, "transform": "Trim" },
+        { "source": "message", "target": "content", "required": true },
+        { "source": "brandName", "target": "brand", "defaultValue": "MyApp" }
+      ],
+      "responseMappings": [
+        { "source": "status", "target": "sendStatus" },
+        { "source": "message_id", "target": "messageId" },
+        { "source": "sent_at", "target": "sentAt" }
+      ],
+      "validations": [
+        { "field": "phoneNumber", "rule": "Required", "errorMessage": "Phone number is required" },
+        { "field": "message", "rule": "Required", "errorMessage": "Message content is required" }
+      ]
+    }
+  ],
+  "retry": { "maxRetries": 2, "initialDelayMs": 500, "backoffStrategy": "Fixed", "retryOnStatusCodes": [500, 502] },
+  "circuitBreaker": { "failureThreshold": 10, "durationOfBreakSeconds": 15, "samplingDurationSeconds": 30 }
+}

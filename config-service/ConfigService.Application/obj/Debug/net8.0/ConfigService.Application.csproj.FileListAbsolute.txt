@@ -1,0 +1,15 @@
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.csproj.AssemblyReference.cache
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.AssemblyInfoInputs.cache
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.AssemblyInfo.cs
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.csproj.CoreCompileInputs.cache
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\ConfigService.Application.deps.json
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\ConfigService.Application.dll
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\ConfigService.Application.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\ConfigService.Domain.dll
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\ConfigService.Domain.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigSe.D6EB1DCE.Up2Date
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.dll
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\refint\ConfigService.Application.dll
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ref\ConfigService.Application.dll

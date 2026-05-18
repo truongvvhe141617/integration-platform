@@ -1,0 +1,139 @@
+{
+  "_comment": "Ví dụ CASE ĐƠN GIẢN: Thêm API ví điện tử mới - CHỈ CẦN CONFIG, không cần code",
+  "id": "ewallet-momo",
+  "name": "MoMo E-Wallet Integration",
+  "connectorType": "generic-http",
+  "version": 1,
+  "status": "Active",
+  "endpoint": {
+    "baseUrl": "https://api.momo.vn",
+    "defaultHeaders": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  },
+  "authentication": {
+    "type": "ApiKey",
+    "parameters": {
+      "HeaderName": "X-API-Key",
+      "ApiKey": "{{MOMO_API_KEY}}"
+    }
+  },
+  "operations": [
+    {
+      "name": "payment",
+      "httpMethod": "POST",
+      "path": "/api/v2/payment",
+      "contentType": "application/json",
+      "requestMappings": [
+        {
+          "source": "orderId",
+          "target": "partnerRefId",
+          "required": true
+        },
+        {
+          "source": "amount",
+          "target": "amount",
+          "required": true
+        },
+        {
+          "source": "currency",
+          "target": "currency",
+          "defaultValue": "VND"
+        },
+        {
+          "source": "customer.phone",
+          "target": "customerPhone",
+          "required": true,
+          "transform": "Trim"
+        },
+        {
+          "source": "description",
+          "target": "orderInfo",
+          "defaultValue": "Payment"
+        }
+      ],
+      "responseMappings": [
+        {
+          "source": "transId",
+          "target": "transactionId"
+        },
+        {
+          "source": "resultCode",
+          "target": "statusCode"
+        },
+        {
+          "source": "message",
+          "target": "statusMessage"
+        },
+        {
+          "source": "payUrl",
+          "target": "redirectUrl"
+        }
+      ],
+      "validations": [
+        {
+          "field": "orderId",
+          "rule": "Required",
+          "errorMessage": "Order ID is required"
+        },
+        {
+          "field": "amount",
+          "rule": "Required",
+          "errorMessage": "Amount is required"
+        },
+        {
+          "field": "customer.phone",
+          "rule": "Regex:^(0|\\+84)[0-9]{9,10}$",
+          "errorMessage": "Invalid phone number format"
+        }
+      ]
+    },
+    {
+      "name": "inquiry",
+      "httpMethod": "POST",
+      "path": "/api/v2/inquiry",
+      "contentType": "application/json",
+      "requestMappings": [
+        {
+          "source": "transactionId",
+          "target": "transId",
+          "required": true
+        }
+      ],
+      "responseMappings": [
+        {
+          "source": "transId",
+          "target": "transactionId"
+        },
+        {
+          "source": "status",
+          "target": "transactionStatus"
+        },
+        {
+          "source": "amount",
+          "target": "amount"
+        }
+      ],
+      "validations": []
+    }
+  ],
+  "retry": {
+    "maxRetries": 3,
+    "initialDelayMs": 1000,
+    "backoffStrategy": "Exponential",
+    "retryOnStatusCodes": [408, 429, 500, 502, 503, 504]
+  },
+  "circuitBreaker": {
+    "failureThreshold": 5,
+    "durationOfBreakSeconds": 30,
+    "samplingDurationSeconds": 60
+  },
+  "timeoutMs": 15000,
+  "metadata": {
+    "provider": "MoMo",
+    "environment": "production",
+    "team": "payment-team",
+    "documentation": "https://developers.momo.vn/v2"
+  }
+}

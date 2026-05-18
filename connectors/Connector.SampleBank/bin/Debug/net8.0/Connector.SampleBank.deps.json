@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Connector.SampleBank/1.0.0": {
+        "dependencies": {
+          "BuildingBlocks.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "Connector.SampleBank.dll": {}
+        }
+      },
+      "BuildingBlocks.Abstractions/1.0.0": {
+        "runtime": {
+          "BuildingBlocks.Abstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Connector.SampleBank/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BuildingBlocks.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

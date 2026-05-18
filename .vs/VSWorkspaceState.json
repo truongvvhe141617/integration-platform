@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\services",
+    "\\services\\business-service",
+    "\\services\\business-service\\BusinessService.Api",
+    "\\services\\config-service",
+    "\\services\\config-service\\ConfigService.Api",
+    "\\services\\integration-service",
+    "\\services\\integration-service\\IntegrationService.Api"
+  ],
+  "SelectedNode": "\\integration-platform.sln",
+  "PreviewInSolutionExplorer": false
+}

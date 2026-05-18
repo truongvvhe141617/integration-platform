@@ -1,0 +1,110 @@
+name: Integration Platform CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ${{ github.repository_owner }}/integration-platform
+
+jobs:
+  # ── Build & Test Backend ──
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore integration-platform.sln
+
+      - name: Build
+        run: dotnet build integration-platform.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test integration-platform.sln --no-build -c Release --logger trx
+
+  # ── Build & Test Frontend ──
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: admin-ui/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: admin-ui
+
+      - name: Build
+        run: npm run build
+        working-directory: admin-ui
+
+  # ── Docker Build & Push ──
+  docker-push:
+    needs: [build-backend, build-frontend]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      matrix:
+        service:
+          - name: gateway
+            dockerfile: gateway/Dockerfile
+          - name: config-service
+            dockerfile: services/config-service/Dockerfile
+          - name: integration-service
+            dockerfile: services/integration-service/Dockerfile
+          - name: websocket-service
+            dockerfile: services/websocket-service/Dockerfile
+          - name: admin-ui
+            dockerfile: admin-ui/Dockerfile
+            context: admin-ui
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push ${{ matrix.service.name }}
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.service.context || '.' }}
+          file: ${{ matrix.service.dockerfile }}
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/${{ matrix.service.name }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/${{ matrix.service.name }}:${{ github.sha }}
+
+  # ── Deploy to Staging ──
+  deploy-staging:
+    needs: docker-push
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Staging
+        run: |
+          echo "Deploy to staging server"
+          # kubectl apply -f infrastructure/k8s/staging/

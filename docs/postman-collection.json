@@ -1,0 +1,151 @@
+{
+  "info": {
+    "name": "Integration Platform",
+    "description": "Full API collection for Integration Platform testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "config_url", "value": "http://localhost:5002" },
+    { "key": "integration_url", "value": "http://localhost:5001" },
+    { "key": "business_url", "value": "http://localhost:5003" },
+    { "key": "gateway_url", "value": "http://localhost:5000" }
+  ],
+  "item": [
+    {
+      "name": "1. Config Service",
+      "item": [
+        {
+          "name": "1.1 Create Config (MoMo)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-User-Id", "value": "admin@company.com" }
+            ],
+            "url": { "raw": "{{config_url}}/api/v1/configs" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"ewallet-momo\",\n  \"name\": \"MoMo E-Wallet\",\n  \"connectorType\": \"generic-http\",\n  \"endpoint\": {\n    \"baseUrl\": \"https://test-payment.momo.vn\",\n    \"defaultHeaders\": { \"Content-Type\": \"application/json\" }\n  },\n  \"authentication\": {\n    \"type\": \"ApiKey\",\n    \"parameters\": { \"HeaderName\": \"X-API-Key\", \"ApiKey\": \"test-key\" }\n  },\n  \"operations\": [\n    {\n      \"name\": \"payment\",\n      \"httpMethod\": \"POST\",\n      \"path\": \"/api/v2/payment\",\n      \"contentType\": \"application/json\",\n      \"requestMappings\": [\n        { \"source\": \"orderId\", \"target\": \"partnerRefId\", \"required\": true },\n        { \"source\": \"amount\", \"target\": \"amount\", \"required\": true },\n        { \"source\": \"customer.phone\", \"target\": \"customerPhone\", \"required\": true }\n      ],\n      \"responseMappings\": [\n        { \"source\": \"transId\", \"target\": \"transactionId\" },\n        { \"source\": \"resultCode\", \"target\": \"statusCode\" }\n      ],\n      \"validations\": [\n        { \"field\": \"orderId\", \"rule\": \"Required\", \"errorMessage\": \"Order ID is required\" },\n        { \"field\": \"amount\", \"rule\": \"Required\", \"errorMessage\": \"Amount is required\" }\n      ]\n    }\n  ],\n  \"retry\": { \"maxRetries\": 3, \"initialDelayMs\": 1000, \"backoffStrategy\": \"Exponential\", \"retryOnStatusCodes\": [408, 429, 500, 502, 503, 504] },\n  \"circuitBreaker\": { \"failureThreshold\": 5, \"durationOfBreakSeconds\": 30, \"samplingDurationSeconds\": 60 },\n  \"timeoutMs\": 15000\n}"
+            }
+          }
+        },
+        {
+          "name": "1.2 Transition → Review",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "X-User-Id", "value": "admin@company.com" }],
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo/transition?status=Review" }
+          }
+        },
+        {
+          "name": "1.3 Transition → Approved",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "X-User-Id", "value": "reviewer@company.com" }],
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo/transition?status=Approved" }
+          }
+        },
+        {
+          "name": "1.4 Transition → Active",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "X-User-Id", "value": "deployer@company.com" }],
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo/transition?status=Active" }
+          }
+        },
+        {
+          "name": "1.5 Get Config",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo" }
+          }
+        },
+        {
+          "name": "1.6 Get All Configs",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{config_url}}/api/v1/configs" }
+          }
+        },
+        {
+          "name": "1.7 Get Versions",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo/versions" }
+          }
+        },
+        {
+          "name": "1.8 Get Audit Log",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo/audit" }
+          }
+        },
+        {
+          "name": "1.9 Rollback to v1",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "X-User-Id", "value": "admin@company.com" }],
+            "url": { "raw": "{{config_url}}/api/v1/configs/ewallet-momo/rollback/1" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Integration Service",
+      "item": [
+        {
+          "name": "2.1 Execute Integration",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Correlation-Id", "value": "test-corr-001" }
+            ],
+            "url": { "raw": "{{integration_url}}/api/v1/integration/execute" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connectorConfigId\": \"ewallet-momo\",\n  \"operation\": \"payment\",\n  \"idempotencyKey\": \"PAY-2024-001\",\n  \"data\": {\n    \"orderId\": \"ORD-2024-001\",\n    \"amount\": 150000,\n    \"customer\": { \"phone\": \"0901234567\" }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "2.2 Health Check",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{integration_url}}/api/v1/integration/health/ewallet-momo" }
+          }
+        },
+        {
+          "name": "2.3 Test Validation Error",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{integration_url}}/api/v1/integration/execute" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connectorConfigId\": \"ewallet-momo\",\n  \"operation\": \"payment\",\n  \"data\": { \"amount\": 100000 }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Business Service",
+      "item": [
+        {
+          "name": "3.1 Process Payment (MoMo)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{business_url}}/api/v1/business/payment" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"ORD-2024-003\",\n  \"amount\": 250000,\n  \"paymentMethod\": \"momo\",\n  \"customerPhone\": \"0901234567\",\n  \"description\": \"Test payment\",\n  \"idempotencyKey\": \"BIZ-PAY-003\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
