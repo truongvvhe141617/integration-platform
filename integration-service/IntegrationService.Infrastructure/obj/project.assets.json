@@ -3747,11 +3747,11 @@
             "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
               "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj"
             },
-            "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj": {
-              "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj"
+            "d:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj": {
+              "projectPath": "d:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj"
             },
-            "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj": {
-              "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj"
+            "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj": {
+              "projectPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj"
             }
           }
         }

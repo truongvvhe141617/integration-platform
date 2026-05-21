@@ -1,0 +1,63 @@
+{
+  "id": "bank-c-transfer",
+  "name": "Bank C - Fund Transfer",
+  "connectorType": "generic-http",
+  "status": "Active",
+  "timeoutMs": 20000,
+
+  "endpoint": {
+    "baseUrl": "http://localhost:5002/mock",
+    "defaultHeaders": {
+      "X-Partner-Id": "COMPANY-001"
+    }
+  },
+
+  "authentication": {
+    "type": "BearerToken",
+    "parameters": {
+      "Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.demo"
+    }
+  },
+
+  "operations": [
+    {
+      "name": "transfer",
+      "httpMethod": "POST",
+      "path": "/bank-c/api/transfer",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "fromAccount", "target": "sender_account", "required": true },
+        { "source": "toAccount", "target": "receiver_account", "required": true },
+        { "source": "amount", "target": "transfer_amount", "required": true },
+        { "source": "currency", "target": "ccy", "defaultValue": "VND" },
+        { "source": "description", "target": "remark", "defaultValue": "Transfer" },
+        { "source": "referenceId", "target": "external_ref", "required": true }
+      ],
+      "responseMappings": [
+        { "source": "code", "target": "statusCode" },
+        { "source": "message", "target": "statusMessage" },
+        { "source": "transaction_id", "target": "bankTransactionId" },
+        { "source": "processed_at", "target": "transactionDate" },
+        { "source": "fee_amount", "target": "transactionFee" }
+      ],
+      "validations": [
+        { "field": "fromAccount", "rule": "Required", "errorMessage": "Sender account is required" },
+        { "field": "toAccount", "rule": "Required", "errorMessage": "Receiver account is required" },
+        { "field": "amount", "rule": "Required", "errorMessage": "Amount is required" },
+        { "field": "referenceId", "rule": "Required", "errorMessage": "Reference ID is required" }
+      ]
+    }
+  ],
+
+  "retry": {
+    "maxRetries": 3,
+    "initialDelayMs": 500,
+    "backoffStrategy": "Exponential",
+    "retryOnStatusCodes": [500, 502, 503]
+  },
+  "circuitBreaker": {
+    "failureThreshold": 5,
+    "durationOfBreakSeconds": 30,
+    "samplingDurationSeconds": 60
+  }
+}

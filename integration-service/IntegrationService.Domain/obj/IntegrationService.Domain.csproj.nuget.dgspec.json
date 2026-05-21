@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {}
+    "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {}
   },
   "projects": {
-    "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {
+    "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj",
+        "projectUniqueName": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj",
         "projectName": "IntegrationService.Domain",
-        "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj",
+        "projectPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj",
         "packagesPath": "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\",
-        "outputPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\obj\\",
+        "outputPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

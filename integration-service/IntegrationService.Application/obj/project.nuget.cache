@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EXvOMDPwMDs=",
+  "dgSpecHash": "8arWY4f9S5k=",
   "success": true,
-  "projectFilePath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
+  "projectFilePath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -37,9 +37,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'AutoMapper' 12.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
-      "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
+      "projectPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
+      "filePath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
       "libraryId": "AutoMapper",
       "targetGraphs": [
         "net8.0"

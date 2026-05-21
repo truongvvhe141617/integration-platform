@@ -1,0 +1,16 @@
+D:\TEST\integration-platform\business-service\BusinessService.Application\bin\Release\net8.0\BusinessService.Application.deps.json
+D:\TEST\integration-platform\business-service\BusinessService.Application\bin\Release\net8.0\BusinessService.Application.dll
+D:\TEST\integration-platform\business-service\BusinessService.Application\bin\Release\net8.0\BusinessService.Application.pdb
+D:\TEST\integration-platform\business-service\BusinessService.Application\bin\Release\net8.0\BusinessService.Domain.dll
+D:\TEST\integration-platform\business-service\BusinessService.Application\bin\Release\net8.0\BusinessService.Domain.pdb
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.csproj.AssemblyReference.cache
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.AssemblyInfoInputs.cache
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.AssemblyInfo.cs
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.csproj.CoreCompileInputs.cache
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.sourcelink.json
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\Business.D45655CC.Up2Date
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.dll
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\refint\BusinessService.Application.dll
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\BusinessService.Application.pdb
+D:\TEST\integration-platform\business-service\BusinessService.Application\obj\Release\net8.0\ref\BusinessService.Application.dll

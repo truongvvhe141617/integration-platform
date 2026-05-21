@@ -9,3 +9,4 @@ D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Rel
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Release\net8.0\refint\BuildingBlocks.Abstractions.dll
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Release\net8.0\BuildingBlocks.Abstractions.pdb
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Release\net8.0\ref\BuildingBlocks.Abstractions.dll
+D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Release\net8.0\BuildingBlocks.Abstractions.sourcelink.json

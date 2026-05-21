@@ -202,3 +202,4 @@ D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debu
 D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\IntegrationService.Api.genruntimeconfig.cache
 D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\ref\IntegrationService.Api.dll
 D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\IntegrationService.Api.sourcelink.json
+d:\TEST\integration-platform\integration-service\IntegrationService.Api\bin\Debug\net8.0\configs\bank-b-webhook.json

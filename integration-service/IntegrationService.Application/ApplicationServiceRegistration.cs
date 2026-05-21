@@ -30,6 +30,9 @@ public static class ApplicationServiceRegistration
         // ── Application Services ──
         services.AddScoped<IIntegrationExecutor, IntegrationExecutor>();
 
+        // Flow 2: Webhook inbound processor
+        services.AddScoped<IWebhookProcessor, WebhookProcessor>();
+
         return services;
     }
 }

@@ -1,0 +1,50 @@
+{
+  "id": "bank-e-transfer",
+  "name": "Bank E - Fund Transfer (Custom Connector - Signature Required)",
+  "connectorType": "bank-e",
+  "status": "Active",
+  "timeoutMs": 30000,
+  "endpoint": {
+    "baseUrl": "http://localhost:5002/mock",
+    "defaultHeaders": { "X-Channel": "PARTNER-API" }
+  },
+  "authentication": {
+    "type": "Custom",
+    "parameters": {
+      "MerchantId": "MERCHANT-001",
+      "SecretKey": "bank-e-hmac-secret-key-demo-12345"
+    }
+  },
+  "operations": [
+    {
+      "name": "transfer",
+      "httpMethod": "POST",
+      "path": "/bank-e/partner/v1/transfer",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "fromAccount", "target": "debit_account", "required": true },
+        { "source": "toAccount", "target": "credit_account", "required": true },
+        { "source": "amount", "target": "transfer_amount", "required": true },
+        { "source": "currency", "target": "currency", "defaultValue": "VND" },
+        { "source": "description", "target": "narrative", "transform": "ToUpper" },
+        { "source": "referenceId", "target": "partner_txn_ref", "required": true }
+      ],
+      "responseMappings": [
+        { "source": "response_code", "target": "statusCode" },
+        { "source": "response_message", "target": "statusMessage" },
+        { "source": "transaction_ref", "target": "bankTransactionId" },
+        { "source": "bank_trace_no", "target": "bankTraceNo" },
+        { "source": "transaction_date", "target": "transactionDate" },
+        { "source": "fee", "target": "transactionFee" }
+      ],
+      "validations": [
+        { "field": "fromAccount", "rule": "Required", "errorMessage": "Debit account is required" },
+        { "field": "toAccount", "rule": "Required", "errorMessage": "Credit account is required" },
+        { "field": "amount", "rule": "Required", "errorMessage": "Amount is required" },
+        { "field": "referenceId", "rule": "Required", "errorMessage": "Reference ID is required" }
+      ]
+    }
+  ],
+  "retry": { "maxRetries": 1, "initialDelayMs": 2000, "backoffStrategy": "Fixed", "retryOnStatusCodes": [500, 502] },
+  "circuitBreaker": { "failureThreshold": 3, "durationOfBreakSeconds": 120, "samplingDurationSeconds": 180 }
+}

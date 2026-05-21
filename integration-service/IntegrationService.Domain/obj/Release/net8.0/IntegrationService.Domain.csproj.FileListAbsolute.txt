@@ -1,0 +1,12 @@
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\bin\Release\net8.0\IntegrationService.Domain.deps.json
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\bin\Release\net8.0\IntegrationService.Domain.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\bin\Release\net8.0\IntegrationService.Domain.pdb
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.AssemblyInfoInputs.cache
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.AssemblyInfo.cs
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.csproj.CoreCompileInputs.cache
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.sourcelink.json
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\refint\IntegrationService.Domain.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\IntegrationService.Domain.pdb
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Release\net8.0\ref\IntegrationService.Domain.dll

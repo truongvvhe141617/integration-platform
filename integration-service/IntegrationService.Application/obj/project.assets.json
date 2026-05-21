@@ -1376,11 +1376,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
+      "projectUniqueName": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
       "projectName": "IntegrationService.Application",
-      "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
+      "projectPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj",
       "packagesPath": "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\",
-      "outputPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\obj\\",
+      "outputPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1402,11 +1402,11 @@
             "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
               "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj"
             },
-            "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj": {
-              "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj"
+            "d:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj": {
+              "projectPath": "d:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj"
             },
-            "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {
-              "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj"
+            "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {
+              "projectPath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj"
             }
           }
         }

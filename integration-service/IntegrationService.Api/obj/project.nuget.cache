@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Sesk9AZPPwY=",
+  "dgSpecHash": "KdBUcbzP+fo=",
   "success": true,
-  "projectFilePath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Api\\IntegrationService.Api.csproj",
+  "projectFilePath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Api\\IntegrationService.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

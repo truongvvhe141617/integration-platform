@@ -28,7 +28,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
     });
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    // Webhook endpoint không cần JWT — đối tác gọi vào dùng signature verification
+    options.AddPolicy("anonymous", policy => policy.RequireAssertion(_ => true));
+});
 
 // ── Rate Limiting ──
 builder.Services.AddRateLimiter(options =>

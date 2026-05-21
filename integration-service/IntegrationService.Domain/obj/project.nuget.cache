@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KT0q1L7D1vY=",
+  "dgSpecHash": "CWVbQWMPK/g=",
   "success": true,
-  "projectFilePath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj",
+  "projectFilePath": "d:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

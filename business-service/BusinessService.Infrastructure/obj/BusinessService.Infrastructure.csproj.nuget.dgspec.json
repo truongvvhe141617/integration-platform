@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj": {}
+    "d:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj": {
+    "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj",
-        "projectName": "BusinessService.Domain",
-        "projectPath": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj",
+        "projectUniqueName": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj",
+        "projectName": "BuildingBlocks.Abstractions",
+        "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj",
         "packagesPath": "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\",
-        "outputPath": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\obj\\",
+        "outputPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,14 +67,77 @@
         }
       }
     },
-    "D:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj": {
+    "d:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj",
-        "projectName": "BusinessService.Infrastructure",
-        "projectPath": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj",
+        "projectUniqueName": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj",
+        "projectName": "BusinessService.Domain",
+        "projectPath": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj",
         "packagesPath": "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\",
-        "outputPath": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\obj\\",
+        "outputPath": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\TRUONGVV.PIACOM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj",
+        "projectName": "BusinessService.Infrastructure",
+        "projectPath": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\BusinessService.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\TRUONGVV.PIACOM\\.nuget\\packages\\",
+        "outputPath": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -93,8 +156,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj": {
-                "projectPath": "D:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj"
+              "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj"
+              },
+              "d:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj": {
+                "projectPath": "d:\\TEST\\integration-platform\\business-service\\BusinessService.Domain\\BusinessService.Domain.csproj"
               }
             }
           }
@@ -130,6 +196,14 @@
             "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

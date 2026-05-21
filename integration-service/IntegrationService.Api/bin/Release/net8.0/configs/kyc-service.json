@@ -1,0 +1,42 @@
+{
+  "id": "kyc-service",
+  "name": "KYC - Identity Verification",
+  "connectorType": "generic-http",
+  "status": "Active",
+  "timeoutMs": 20000,
+  "endpoint": {
+    "baseUrl": "http://localhost:5002/mock",
+    "defaultHeaders": {}
+  },
+  "authentication": {
+    "type": "BearerToken",
+    "parameters": { "Token": "kyc-bearer-token-demo" }
+  },
+  "operations": [
+    {
+      "name": "verify-id",
+      "httpMethod": "POST",
+      "path": "/kyc/api/v1/verify",
+      "contentType": "application/json",
+      "requestMappings": [
+        { "source": "idNumber", "target": "id_card_number", "required": true },
+        { "source": "fullName", "target": "full_name", "required": true, "transform": "ToUpper" },
+        { "source": "dateOfBirth", "target": "dob", "required": true }
+      ],
+      "responseMappings": [
+        { "source": "verified", "target": "isVerified" },
+        { "source": "score", "target": "confidenceScore" },
+        { "source": "full_name", "target": "verifiedName" },
+        { "source": "dob", "target": "verifiedDob" },
+        { "source": "verified_at", "target": "verifiedAt" }
+      ],
+      "validations": [
+        { "field": "idNumber", "rule": "Required", "errorMessage": "ID number is required" },
+        { "field": "fullName", "rule": "Required", "errorMessage": "Full name is required" },
+        { "field": "dateOfBirth", "rule": "Required", "errorMessage": "Date of birth is required" }
+      ]
+    }
+  ],
+  "retry": { "maxRetries": 1, "initialDelayMs": 1000, "backoffStrategy": "Fixed", "retryOnStatusCodes": [500] },
+  "circuitBreaker": { "failureThreshold": 5, "durationOfBreakSeconds": 60, "samplingDurationSeconds": 120 }
+}
