@@ -81,3 +81,4 @@ D:\TEST\integration-platform\websocket-service\WebSocketService.Api\obj\Debug\ne
 D:\TEST\integration-platform\websocket-service\WebSocketService.Api\obj\Debug\net8.0\WebSocketService.Api.pdb
 D:\TEST\integration-platform\websocket-service\WebSocketService.Api\obj\Debug\net8.0\WebSocketService.Api.genruntimeconfig.cache
 D:\TEST\integration-platform\websocket-service\WebSocketService.Api\obj\Debug\net8.0\ref\WebSocketService.Api.dll
+D:\TEST\integration-platform\websocket-service\WebSocketService.Api\obj\Debug\net8.0\WebSocketService.Api.sourcelink.json

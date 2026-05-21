@@ -9,3 +9,4 @@ D:\TEST\integration-platform\business-service\BusinessService.Domain\obj\Debug\n
 D:\TEST\integration-platform\business-service\BusinessService.Domain\obj\Debug\net8.0\refint\BusinessService.Domain.dll
 D:\TEST\integration-platform\business-service\BusinessService.Domain\obj\Debug\net8.0\BusinessService.Domain.pdb
 D:\TEST\integration-platform\business-service\BusinessService.Domain\obj\Debug\net8.0\ref\BusinessService.Domain.dll
+D:\TEST\integration-platform\business-service\BusinessService.Domain\obj\Debug\net8.0\BusinessService.Domain.sourcelink.json

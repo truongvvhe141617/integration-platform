@@ -195,6 +195,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj"
+              },
               "D:\\TEST\\integration-platform\\config-service\\ConfigService.Domain\\ConfigService.Domain.csproj": {
                 "projectPath": "D:\\TEST\\integration-platform\\config-service\\ConfigService.Domain\\ConfigService.Domain.csproj"
               }
@@ -238,6 +241,10 @@
               "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[8.0.0, )"
             }
@@ -351,6 +358,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "D:\\TEST\\integration-platform\\config-service\\ConfigService.Application\\ConfigService.Application.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\config-service\\ConfigService.Application\\ConfigService.Application.csproj"
+              },
               "D:\\TEST\\integration-platform\\config-service\\ConfigService.Domain\\ConfigService.Domain.csproj": {
                 "projectPath": "D:\\TEST\\integration-platform\\config-service\\ConfigService.Domain\\ConfigService.Domain.csproj"
               }

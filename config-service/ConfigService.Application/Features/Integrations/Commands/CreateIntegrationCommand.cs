@@ -7,7 +7,7 @@ namespace ConfigService.Application.Features.Integrations.Commands;
 
 // ── Command ──
 public record CreateIntegrationCommand(
-    Guid TenantId,
+    string TenantId,
     string ConfigKey,
     string Name,
     string? Description,

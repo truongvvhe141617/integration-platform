@@ -1,5 +1,6 @@
 using BuildingBlocks.Abstractions.Connectors;
-using ConfigService.Api.Interfaces;
+using ConfigService.Application.Contracts;
+using ConfigService.Application.Models;
 
 namespace ConfigService.Api;
 
@@ -104,7 +105,7 @@ public static class SeedData
             Metadata = new() { ["provider"] = "Bank B", ["team"] = "banking-team" }
         });
 
-        await audit.AddAsync(new Models.ConfigAuditEntry { ConfigId = "bank-b-transfer", Version = 1, Action = "Seeded", PerformedBy = "system" });
+        await audit.AddAsync(new ConfigAuditEntry { ConfigId = "bank-b-transfer", Version = 1, Action = "Seeded", PerformedBy = "system" });
     }
 
     private static async Task SeedBankC(IConfigRepository repo, IConfigAuditRepository audit)
@@ -168,7 +169,7 @@ public static class SeedData
             Metadata = new() { ["provider"] = "Bank C", ["team"] = "banking-team" }
         });
 
-        await audit.AddAsync(new Models.ConfigAuditEntry { ConfigId = "bank-c-transfer", Version = 1, Action = "Seeded", PerformedBy = "system" });
+        await audit.AddAsync(new ConfigAuditEntry { ConfigId = "bank-c-transfer", Version = 1, Action = "Seeded", PerformedBy = "system" });
     }
 
     private static async Task SeedEWallet(IConfigRepository repo, IConfigAuditRepository audit)
@@ -231,7 +232,7 @@ public static class SeedData
             Metadata = new() { ["provider"] = "E-Wallet", ["team"] = "payment-team" }
         });
 
-        await audit.AddAsync(new Models.ConfigAuditEntry { ConfigId = "ewallet-payment", Version = 1, Action = "Seeded", PerformedBy = "system" });
+        await audit.AddAsync(new ConfigAuditEntry { ConfigId = "ewallet-payment", Version = 1, Action = "Seeded", PerformedBy = "system" });
     }
 
     private static async Task SeedHttpBin(IConfigRepository repo, IConfigAuditRepository audit)
@@ -274,6 +275,6 @@ public static class SeedData
             Metadata = new() { ["team"] = "platform-team" }
         });
 
-        await audit.AddAsync(new Models.ConfigAuditEntry { ConfigId = "test-httpbin", Version = 1, Action = "Seeded", PerformedBy = "system" });
+        await audit.AddAsync(new ConfigAuditEntry { ConfigId = "test-httpbin", Version = 1, Action = "Seeded", PerformedBy = "system" });
     }
 }

@@ -13,3 +13,4 @@ D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj
 D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\refint\BusinessService.Infrastructure.dll
 D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.pdb
 D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\ref\BusinessService.Infrastructure.dll
+D:\TEST\integration-platform\business-service\BusinessService.Infrastructure\obj\Debug\net8.0\BusinessService.Infrastructure.sourcelink.json

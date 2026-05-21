@@ -20,3 +20,4 @@ D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\D
 D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Debug\net8.0\refint\IntegrationService.Domain.dll
 D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Debug\net8.0\IntegrationService.Domain.pdb
 D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Debug\net8.0\ref\IntegrationService.Domain.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Domain\obj\Debug\net8.0\IntegrationService.Domain.sourcelink.json

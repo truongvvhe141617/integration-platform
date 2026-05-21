@@ -13,3 +13,6 @@ D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\
 D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\refint\ConfigService.Application.dll
 D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.pdb
 D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ref\ConfigService.Application.dll
+D:\TEST\integration-platform\config-service\ConfigService.Application\obj\Debug\net8.0\ConfigService.Application.sourcelink.json
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\BuildingBlocks.Abstractions.dll
+D:\TEST\integration-platform\config-service\ConfigService.Application\bin\Debug\net8.0\BuildingBlocks.Abstractions.pdb

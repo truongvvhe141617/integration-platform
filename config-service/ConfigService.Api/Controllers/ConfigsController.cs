@@ -1,12 +1,12 @@
 using BuildingBlocks.Abstractions.Connectors;
-using ConfigService.Api.Interfaces;
+using ConfigService.Application.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigService.Api.Controllers;
 
 /// <summary>
-/// Thin controller — delegate mọi logic sang IConfigService.
-/// Chỉ xử lý HTTP concerns: routing, status codes, headers.
+/// Legacy API — backward compatible cho Integration Service.
+/// Endpoint: /api/v1/configs/{id}
 /// </summary>
 [ApiController]
 [Route("api/v1/[controller]")]
@@ -51,7 +51,6 @@ public class ConfigsController : ControllerBase
         return Ok(configs);
     }
 
-    /// <summary>Tạo config mới (status = Draft)</summary>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ConnectorConfig config)
     {
@@ -67,7 +66,6 @@ public class ConfigsController : ControllerBase
         }
     }
 
-    /// <summary>Cập nhật config → tạo version mới (status = Draft)</summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(string id, [FromBody] ConnectorConfig config)
     {
@@ -81,13 +79,8 @@ public class ConfigsController : ControllerBase
         catch (InvalidOperationException ex) { return BadRequest(new { error = ex.Message }); }
     }
 
-    /// <summary>
-    /// Chuyển status theo governance flow: Draft → Review → Approved → Active
-    /// POST /api/v1/configs/{id}/transition?status=Review
-    /// </summary>
     [HttpPost("{id}/transition")]
-    public async Task<IActionResult> TransitionStatus(
-        string id, [FromQuery] string status)
+    public async Task<IActionResult> TransitionStatus(string id, [FromQuery] string status)
     {
         var performedBy = GetCurrentUser();
         try
@@ -99,7 +92,6 @@ public class ConfigsController : ControllerBase
         catch (InvalidOperationException ex) { return BadRequest(new { error = ex.Message }); }
     }
 
-    /// <summary>Rollback về version cụ thể</summary>
     [HttpPost("{id}/rollback/{version:int}")]
     public async Task<IActionResult> Rollback(string id, int version)
     {
@@ -108,7 +100,6 @@ public class ConfigsController : ControllerBase
         return config != null ? Ok(config) : NotFound(new { error = $"Version {version} not found" });
     }
 
-    /// <summary>Lấy audit log của config</summary>
     [HttpGet("{id}/audit")]
     public async Task<IActionResult> GetAuditLog(string id)
     {
@@ -124,7 +115,6 @@ public class ConfigsController : ControllerBase
         return NoContent();
     }
 
-    /// <summary>Lấy user từ JWT claims (hoặc header fallback cho dev)</summary>
     private string GetCurrentUser()
     {
         return User.Identity?.Name

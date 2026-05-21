@@ -19,12 +19,13 @@ public class IntegrationDbContext : DbContext
     {
         modelBuilder.Entity<ExecutionLog>(e =>
         {
-            e.ToTable("int_execution_log");
+            e.ToTable("execution_log");
             e.HasKey(x => x.Id);
             e.Property(x => x.CorrelationId).HasMaxLength(100).IsRequired();
             e.Property(x => x.ConfigKey).HasMaxLength(100).IsRequired();
             e.Property(x => x.Operation).HasMaxLength(100).IsRequired();
             e.Property(x => x.RequestBody).HasColumnType("nvarchar(max)");
+            e.Property(x => x.RequestHeaders).HasColumnType("nvarchar(max)");
             e.Property(x => x.ResponseBody).HasColumnType("nvarchar(max)");
             e.HasIndex(x => x.CorrelationId);
             e.HasIndex(x => x.ConfigKey);
@@ -38,7 +39,7 @@ public class IntegrationDbContext : DbContext
 
         modelBuilder.Entity<RetryLog>(e =>
         {
-            e.ToTable("int_retry_log");
+            e.ToTable("retry_log");
             e.HasKey(x => x.Id);
         });
     }

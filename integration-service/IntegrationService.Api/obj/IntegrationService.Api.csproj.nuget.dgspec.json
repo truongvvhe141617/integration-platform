@@ -275,6 +275,12 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj"
+              },
+              "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj"
+              },
               "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {
                 "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj"
               }
@@ -318,6 +324,10 @@
               "version": "[12.2.0, )"
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[8.0.0, )"
             }
@@ -431,8 +441,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj": {
-                "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Domain\\IntegrationService.Domain.csproj"
+              "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Abstractions\\BuildingBlocks.Abstractions.csproj"
+              },
+              "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\building-blocks\\BuildingBlocks.Core\\BuildingBlocks.Core.csproj"
+              },
+              "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj": {
+                "projectPath": "D:\\TEST\\integration-platform\\integration-service\\IntegrationService.Application\\IntegrationService.Application.csproj"
               }
             }
           }
@@ -472,6 +488,14 @@
             "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

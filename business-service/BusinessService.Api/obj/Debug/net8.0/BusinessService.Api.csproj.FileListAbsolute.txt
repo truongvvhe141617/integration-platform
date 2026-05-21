@@ -156,3 +156,4 @@ D:\TEST\integration-platform\business-service\BusinessService.Api\obj\Debug\net8
 D:\TEST\integration-platform\business-service\BusinessService.Api\obj\Debug\net8.0\Business.4F041A0E.Up2Date
 D:\TEST\integration-platform\business-service\BusinessService.Api\obj\Debug\net8.0\BusinessService.Api.genruntimeconfig.cache
 D:\TEST\integration-platform\business-service\BusinessService.Api\obj\Debug\net8.0\ref\BusinessService.Api.dll
+D:\TEST\integration-platform\business-service\BusinessService.Api\obj\Debug\net8.0\BusinessService.Api.sourcelink.json

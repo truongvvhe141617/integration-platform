@@ -12,21 +12,24 @@ public class IntegrationConfigRepository : IIntegrationConfigRepository
     public IntegrationConfigRepository(AppDbContext db) => _db = db;
 
     public async Task<IntegrationConfig?> GetByIdAsync(Guid id, CancellationToken ct = default)
-        => await _db.IntegrationConfigs
+        => await _db.IntegrationConfigs.IgnoreQueryFilters()
             .Include(c => c.Operations)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
 
-    public async Task<IntegrationConfig?> GetByKeyAsync(Guid tenantId, string configKey, CancellationToken ct = default)
+    public async Task<IntegrationConfig?> GetByKeyAsync(string tenantId, string configKey, CancellationToken ct = default)
         => await _db.IntegrationConfigs
             .Include(c => c.Operations)
             .FirstOrDefaultAsync(c => c.TenantId == tenantId && c.ConfigKey == configKey, ct);
 
     public async Task<(IEnumerable<IntegrationConfig> Items, int Total)> GetPagedAsync(
-        Guid tenantId, string? search, string? status, string? tags,
+        string tenantId, string? search, string? status, string? tags,
         int page, int pageSize, CancellationToken ct = default)
     {
-        var query = _db.IntegrationConfigs
-            .Where(c => c.TenantId == tenantId);
+        var query = _db.IntegrationConfigs.IgnoreQueryFilters()
+            .Where(c => c.IsDeleted == false);
+
+        if (!string.IsNullOrEmpty(tenantId) && tenantId != "default")
+            query = query.Where(c => c.TenantId == tenantId);
 
         if (!string.IsNullOrEmpty(search))
             query = query.Where(c => c.Name.Contains(search) || c.ConfigKey.Contains(search));
@@ -55,11 +58,45 @@ public class IntegrationConfigRepository : IIntegrationConfigRepository
 
     public async Task UpdateAsync(IntegrationConfig config, CancellationToken ct = default)
     {
-        _db.IntegrationConfigs.Update(config);
+        _db.Entry(config).State = EntityState.Modified;
         await _db.SaveChangesAsync(ct);
     }
 
-    public async Task<bool> ExistsAsync(Guid tenantId, string configKey, CancellationToken ct = default)
+    public async Task UpdateWithOperationsAsync(IntegrationConfig config, List<IntegrationOperation> newOperations, CancellationToken ct = default)
+    {
+        // 1. Detach all tracked entities to avoid conflicts
+        _db.ChangeTracker.Clear();
+
+        // 2. Delete old operations via raw SQL
+        await _db.Database.ExecuteSqlRawAsync(
+            "DELETE FROM request_mapping WHERE OperationId IN (SELECT Id FROM integration_operation WHERE ConfigId = {0})", config.Id);
+        await _db.Database.ExecuteSqlRawAsync(
+            "DELETE FROM response_mapping WHERE OperationId IN (SELECT Id FROM integration_operation WHERE ConfigId = {0})", config.Id);
+        await _db.Database.ExecuteSqlRawAsync(
+            "DELETE FROM validation_rule WHERE OperationId IN (SELECT Id FROM integration_operation WHERE ConfigId = {0})", config.Id);
+        await _db.Database.ExecuteSqlRawAsync(
+            "DELETE FROM integration_operation WHERE ConfigId = {0}", config.Id);
+
+        // 3. Update config fields (attach as modified)
+        _db.IntegrationConfigs.Attach(config);
+        _db.Entry(config).State = EntityState.Modified;
+        await _db.SaveChangesAsync(ct);
+
+        // 4. Insert new operations
+        if (newOperations.Count > 0)
+        {
+            await _db.Set<IntegrationOperation>().AddRangeAsync(newOperations, ct);
+            await _db.SaveChangesAsync(ct);
+        }
+    }
+
+    public async Task DeleteAsync(IntegrationConfig config, CancellationToken ct = default)
+    {
+        _db.IntegrationConfigs.Remove(config);
+        await _db.SaveChangesAsync(ct);
+    }
+
+    public async Task<bool> ExistsAsync(string tenantId, string configKey, CancellationToken ct = default)
         => await _db.IntegrationConfigs
             .AnyAsync(c => c.TenantId == tenantId && c.ConfigKey == configKey, ct);
 }

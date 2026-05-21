@@ -192,7 +192,7 @@ export const IntegrationListPage: React.FC = () => {
           />
         ) : (
           <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--color-text-primary)' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--color-border)', background: 'var(--color-bg-subtle)' }}>
                   {['Integration', 'Endpoint', 'Type', 'Status', 'Ops', 'Version', ''].map(h => (
@@ -206,7 +206,7 @@ export const IntegrationListPage: React.FC = () => {
               </thead>
               <tbody>
                 {items.map((item, idx) => {
-                  const cs = CONNECTOR_COLORS[item.connectorType] ?? defaultConnector;
+                  const cs = CONNECTOR_COLORS[item.connectorType ?? ''] ?? defaultConnector;
                   return (
                     <tr
                       key={item.id}
@@ -231,7 +231,7 @@ export const IntegrationListPage: React.FC = () => {
                             {item.name}
                           </button>
                           <span style={{ fontSize: 11, color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-mono)' }}>
-                            {item.configKey}
+                            {item.configKey || '—'}
                           </span>
                         </div>
                       </td>
@@ -241,7 +241,7 @@ export const IntegrationListPage: React.FC = () => {
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <Globe size={12} style={{ color: 'var(--color-text-tertiary)', flexShrink: 0 }} />
                           <span style={{ fontSize: 12, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)', maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            {item.baseUrl.replace(/^https?:\/\//, '')}
+                            {(item.baseUrl || '—').replace(/^https?:\/\//, '')}
                           </span>
                         </div>
                       </td>

@@ -28,3 +28,4 @@ D:\TEST\integration-platform\building-blocks\BuildingBlocks.Core\obj\Debug\net8.
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Core\obj\Debug\net8.0\refint\BuildingBlocks.Core.dll
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Core\obj\Debug\net8.0\BuildingBlocks.Core.pdb
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Core\obj\Debug\net8.0\ref\BuildingBlocks.Core.dll
+D:\TEST\integration-platform\building-blocks\BuildingBlocks.Core\obj\Debug\net8.0\BuildingBlocks.Core.sourcelink.json

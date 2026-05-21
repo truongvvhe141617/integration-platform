@@ -9,3 +9,4 @@ D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.
 D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\refint\ConfigService.Domain.dll
 D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.pdb
 D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ref\ConfigService.Domain.dll
+D:\TEST\integration-platform\config-service\ConfigService.Domain\obj\Debug\net8.0\ConfigService.Domain.sourcelink.json

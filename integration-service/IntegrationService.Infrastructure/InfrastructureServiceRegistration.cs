@@ -1,6 +1,8 @@
+using IntegrationService.Application.Contracts;
 using IntegrationService.Domain.Contracts.Persistence;
 using IntegrationService.Infrastructure.Persistence;
 using IntegrationService.Infrastructure.Repositories;
+using IntegrationService.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace IntegrationService.Infrastructure;
 
 /// <summary>
-/// Pattern iolis-instrument: tất cả DI infrastructure đăng ký tại đây.
+/// Tất cả DI infrastructure đăng ký tại đây.
 /// Program.cs chỉ gọi: builder.Services.AddInfrastructureServices(configuration)
 /// </summary>
 public static class InfrastructureServiceRegistration
@@ -16,6 +18,7 @@ public static class InfrastructureServiceRegistration
     public static IServiceCollection AddInfrastructureServices(
         this IServiceCollection services, IConfiguration configuration)
     {
+        // ── Database ──
         var connectionString = configuration.GetConnectionString("SqlServer");
         var timeoutStr = configuration["ConnectionStrings:TimeOut"];
         var retryStr = configuration["ConnectionStrings:SqlRetry"];
@@ -33,23 +36,30 @@ public static class InfrastructureServiceRegistration
         }
         else
         {
-            // InMemory fallback cho dev
             services.AddDbContext<IntegrationDbContext>(options =>
                 options.UseInMemoryDatabase("IntegrationServiceDb"));
         }
 
-        // Generic repository
+        // ── Repositories ──
         services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
-
-        // Specific repositories
         services.AddScoped<IExecutionLogRepository, ExecutionLogRepository>();
 
-        // Redis cache
+        // ── Cache ──
         var redisConn = configuration.GetConnectionString("Redis");
         if (!string.IsNullOrWhiteSpace(redisConn))
             services.AddStackExchangeRedisCache(opt => opt.Configuration = redisConn);
         else
             services.AddDistributedMemoryCache();
+
+        // ── Config Provider ──
+        var configMode = configuration["Connectors:ConfigMode"] ?? "file";
+        if (configMode == "file")
+            services.AddSingleton<IConfigProvider, FileConfigProvider>();
+        else
+            services.AddScoped<IConfigProvider, ConfigProvider>();
+
+        // ── Idempotency Store ──
+        services.AddScoped<IIdempotencyStore, RedisIdempotencyStore>();
 
         return services;
     }

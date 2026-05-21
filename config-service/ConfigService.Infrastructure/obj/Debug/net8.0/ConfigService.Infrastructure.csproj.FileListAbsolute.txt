@@ -15,3 +15,8 @@ D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\obj\Deb
 D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\obj\Debug\net8.0\ConfigService.Infrastructure.pdb
 D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\obj\Debug\net8.0\ConfigService.Infrastructure.genruntimeconfig.cache
 D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\obj\Debug\net8.0\ref\ConfigService.Infrastructure.dll
+D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\bin\Debug\net8.0\BuildingBlocks.Abstractions.dll
+D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\bin\Debug\net8.0\ConfigService.Application.dll
+D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\bin\Debug\net8.0\ConfigService.Application.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\bin\Debug\net8.0\BuildingBlocks.Abstractions.pdb
+D:\TEST\integration-platform\config-service\ConfigService.Infrastructure\obj\Debug\net8.0\ConfigService.Infrastructure.sourcelink.json

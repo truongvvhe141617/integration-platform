@@ -1,5 +1,6 @@
 using ConfigService.Application.Common.Models;
 using ConfigService.Application.Features.Integrations.Commands;
+using ConfigService.Application.Features.Integrations.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,12 +14,7 @@ public class IntegrationsController : ControllerBase
 
     public IntegrationsController(IMediator mediator) => _mediator = mediator;
 
-    private Guid TenantId {
-        get {
-            var header = HttpContext.Request.Headers["X-Tenant-Id"].FirstOrDefault() ?? "";
-            return Guid.TryParse(header, out var id) ? id : Guid.Empty;
-        }
-    }
+    private string TenantId => HttpContext.Request.Headers["X-Tenant-Id"].FirstOrDefault() ?? "default";
     private string CurrentUser => HttpContext.User.Identity?.Name
         ?? HttpContext.Request.Headers["X-User-Id"].FirstOrDefault() ?? "system";
 
@@ -137,21 +133,3 @@ public record UpdateIntegrationRequest(
 
 public record ChangeStatusRequest(string Status);
 public record TestIntegrationRequest(string Operation, Dictionary<string, object> TestData);
-
-// ── Placeholder queries (implement similarly to commands) ──
-public record GetIntegrationsQuery(Guid TenantId, string? Search, string? Status,
-    string? Tags, int Page, int PageSize) : IRequest<object>;
-public record GetIntegrationByIdQuery(Guid Id) : IRequest<Result<IntegrationConfigDto>>;
-public record GetIntegrationByKeyQuery(Guid TenantId, string ConfigKey) : IRequest<Result<IntegrationConfigDto>>;
-public record UpdateIntegrationCommand(Guid Id, string Name, string BaseUrl,
-    string? Description, string AuthType, string? AuthParams, string? DefaultHeaders,
-    int TimeoutMs, string? RetryConfig, string? CircuitBreaker, string? Tags,
-    string? Metadata, List<OperationDto> Operations, string UpdatedBy)
-    : IRequest<Result<IntegrationConfigDto>>;
-public record DeleteIntegrationCommand(Guid Id, string DeletedBy) : IRequest<Result>;
-public record ChangeIntegrationStatusCommand(Guid Id, string Status, string UpdatedBy)
-    : IRequest<Result<IntegrationConfigDto>>;
-public record TestIntegrationCommand(Guid Id, string Operation, Dictionary<string, object> TestData)
-    : IRequest<Result<object>>;
-public record GetConfigHistoryQuery(Guid ConfigId) : IRequest<object>;
-public record GetAuditLogQuery(Guid EntityId) : IRequest<object>;

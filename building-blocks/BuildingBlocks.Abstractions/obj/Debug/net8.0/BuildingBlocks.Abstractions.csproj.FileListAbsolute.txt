@@ -20,3 +20,4 @@ D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Deb
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Debug\net8.0\refint\BuildingBlocks.Abstractions.dll
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Debug\net8.0\BuildingBlocks.Abstractions.pdb
 D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Debug\net8.0\ref\BuildingBlocks.Abstractions.dll
+D:\TEST\integration-platform\building-blocks\BuildingBlocks.Abstractions\obj\Debug\net8.0\BuildingBlocks.Abstractions.sourcelink.json

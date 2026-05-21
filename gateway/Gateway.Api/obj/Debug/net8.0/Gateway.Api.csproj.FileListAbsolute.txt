@@ -78,3 +78,4 @@ D:\TEST\integration-platform\gateway\Gateway.Api\obj\Debug\net8.0\Gateway.Api.ge
 D:\TEST\integration-platform\gateway\Gateway.Api\obj\Debug\net8.0\ref\Gateway.Api.dll
 D:\TEST\integration-platform\gateway\Gateway.Api\bin\Debug\net8.0\appsettings.Development.json
 D:\TEST\integration-platform\gateway\Gateway.Api\bin\Debug\net8.0\appsettings.Production.json
+D:\TEST\integration-platform\gateway\Gateway.Api\obj\Debug\net8.0\Gateway.Api.sourcelink.json

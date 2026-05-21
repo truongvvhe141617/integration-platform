@@ -17,11 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Abstractions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Core", "building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj", "{B2000000-0000-0000-0000-000000000001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationService.Api", "services\integration-service\IntegrationService.Api\IntegrationService.Api.csproj", "{C1000000-0000-0000-0000-000000000001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationService.Api", "integration-service\IntegrationService.Api\IntegrationService.Api.csproj", "{C1000000-0000-0000-0000-000000000001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigService.Api", "services\config-service\ConfigService.Api\ConfigService.Api.csproj", "{C2000000-0000-0000-0000-000000000001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigService.Api", "config-service\ConfigService.Api\ConfigService.Api.csproj", "{C2000000-0000-0000-0000-000000000001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessService.Api", "services\business-service\BusinessService.Api\BusinessService.Api.csproj", "{C3000000-0000-0000-0000-000000000001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessService.Api", "business-service\BusinessService.Api\BusinessService.Api.csproj", "{C3000000-0000-0000-0000-000000000001}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Api", "gateway\Gateway.Api\Gateway.Api.csproj", "{D1000000-0000-0000-0000-000000000001}"
 EndProject

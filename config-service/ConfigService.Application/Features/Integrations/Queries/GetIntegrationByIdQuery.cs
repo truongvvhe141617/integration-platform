@@ -21,7 +21,7 @@ public class GetIntegrationByIdQueryHandler
     }
 }
 
-public record GetIntegrationByKeyQuery(Guid TenantId, string ConfigKey) : IRequest<Result<IntegrationConfigDto>>;
+public record GetIntegrationByKeyQuery(string TenantId, string ConfigKey) : IRequest<Result<IntegrationConfigDto>>;
 
 public class GetIntegrationByKeyQueryHandler
     : IRequestHandler<GetIntegrationByKeyQuery, Result<IntegrationConfigDto>>

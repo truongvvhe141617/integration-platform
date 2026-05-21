@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConfigService.Domain\ConfigService.Domain.csproj" />
+    <ProjectReference Include="..\ConfigService.Application\ConfigService.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

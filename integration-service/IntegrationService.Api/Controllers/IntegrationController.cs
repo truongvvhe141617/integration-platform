@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using BuildingBlocks.Abstractions.Messaging;
 using BuildingBlocks.Core.Messaging;
-using IntegrationService.Api.Interfaces;
-using IntegrationService.Api.Models;
+using IntegrationService.Application.Contracts;
+using IntegrationService.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntegrationService.Api.Controllers;
@@ -32,7 +32,6 @@ public class IntegrationController : ControllerBase
         var correlationId = HttpContext.Request.Headers["X-Correlation-Id"]
             .FirstOrDefault() ?? Guid.NewGuid().ToString();
 
-        // Propagate Accept-Language vào request headers cho localization
         var lang = HttpContext.Request.Headers["Accept-Language"].FirstOrDefault();
         if (!string.IsNullOrEmpty(lang))
         {
@@ -44,8 +43,6 @@ public class IntegrationController : ControllerBase
         HttpContext.Response.Headers["X-Trace-Id"] = Activity.Current?.TraceId.ToString() ?? "";
 
         var response = await _executor.ExecuteAsync(request, correlationId, cancellationToken);
-
-        // HttpStatus đã được set đúng trong Executor theo ErrorCode
         return StatusCode(response.HttpStatus, response);
     }
 

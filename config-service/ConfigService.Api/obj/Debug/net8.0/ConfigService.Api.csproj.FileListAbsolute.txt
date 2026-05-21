@@ -230,3 +230,4 @@ D:\TEST\integration-platform\config-service\ConfigService.Api\obj\Debug\net8.0\s
 D:\TEST\integration-platform\config-service\ConfigService.Api\obj\Debug\net8.0\ConfigSe.A4A63CA6.Up2Date
 D:\TEST\integration-platform\config-service\ConfigService.Api\obj\Debug\net8.0\ConfigService.Api.genruntimeconfig.cache
 D:\TEST\integration-platform\config-service\ConfigService.Api\obj\Debug\net8.0\ref\ConfigService.Api.dll
+D:\TEST\integration-platform\config-service\ConfigService.Api\obj\Debug\net8.0\ConfigService.Api.sourcelink.json

@@ -179,20 +179,36 @@ public class GenericHttpConnector : IConnector
         {
             var doc = JsonDocument.Parse(content);
             var result = new Dictionary<string, object>();
-            if (doc.RootElement.ValueKind != JsonValueKind.Object) 
+
+            if (doc.RootElement.ValueKind == JsonValueKind.Array)
+            {
+                // Array response → wrap in { "items": [...], "count": N }
+                var items = new List<object>();
+                foreach (var element in doc.RootElement.EnumerateArray())
+                {
+                    if (element.ValueKind == JsonValueKind.Object)
+                    {
+                        var item = new Dictionary<string, object>();
+                        foreach (var prop in element.EnumerateObject())
+                            item[prop.Name] = ParseJsonValue(prop.Value);
+                        items.Add(item);
+                    }
+                    else
+                    {
+                        items.Add(ParseJsonValue(element));
+                    }
+                }
+                result["items"] = items;
+                result["count"] = items.Count;
+                return result;
+            }
+
+            if (doc.RootElement.ValueKind != JsonValueKind.Object)
                 return new() { ["raw"] = content };
 
             foreach (var prop in doc.RootElement.EnumerateObject())
             {
-                result[prop.Name] = prop.Value.ValueKind switch
-                {
-                    JsonValueKind.String => (object)(prop.Value.GetString() ?? ""),
-                    JsonValueKind.Number => prop.Value.TryGetInt64(out var l) ? l : prop.Value.GetDouble(),
-                    JsonValueKind.True => true,
-                    JsonValueKind.False => false,
-                    JsonValueKind.Null => "",
-                    _ => prop.Value // nested objects/arrays: keep as JsonElement
-                };
+                result[prop.Name] = ParseJsonValue(prop.Value);
             }
             return result;
         }
@@ -200,5 +216,36 @@ public class GenericHttpConnector : IConnector
         {
             return new() { ["raw"] = content };
         }
+    }
+
+    private static object ParseJsonValue(JsonElement value)
+    {
+        return value.ValueKind switch
+        {
+            JsonValueKind.String => (object)(value.GetString() ?? ""),
+            JsonValueKind.Number => value.TryGetInt64(out var l) ? l : value.GetDouble(),
+            JsonValueKind.True => true,
+            JsonValueKind.False => false,
+            JsonValueKind.Null => "",
+            JsonValueKind.Object => ParseJsonObject(value),
+            JsonValueKind.Array => ParseJsonArray(value),
+            _ => value.GetRawText()
+        };
+    }
+
+    private static Dictionary<string, object> ParseJsonObject(JsonElement element)
+    {
+        var dict = new Dictionary<string, object>();
+        foreach (var prop in element.EnumerateObject())
+            dict[prop.Name] = ParseJsonValue(prop.Value);
+        return dict;
+    }
+
+    private static List<object> ParseJsonArray(JsonElement element)
+    {
+        var list = new List<object>();
+        foreach (var item in element.EnumerateArray())
+            list.Add(ParseJsonValue(item));
+        return list;
     }
 }

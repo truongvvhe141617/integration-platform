@@ -7,7 +7,7 @@ namespace ConfigService.Domain.Entities;
 public class IntegrationConfig
 {
     public Guid Id { get; private set; }
-    public Guid TenantId { get; private set; }
+    public string TenantId { get; private set; } = string.Empty;
     public string ConfigKey { get; private set; } = string.Empty;
     public string Name { get; private set; } = string.Empty;
     public string? Description { get; private set; }
@@ -46,7 +46,7 @@ public class IntegrationConfig
     private IntegrationConfig() { } // EF Core
 
     public static IntegrationConfig Create(
-        Guid tenantId, string configKey, string name, string baseUrl,
+        string tenantId, string configKey, string name, string baseUrl,
         string connectorType, string createdBy)
     {
         return new IntegrationConfig
@@ -113,6 +113,11 @@ public class IntegrationConfig
     public void AddOperation(IntegrationOperation operation)
     {
         _operations.Add(operation);
+    }
+
+    public void ClearOperations()
+    {
+        _operations.Clear();
     }
 }
 

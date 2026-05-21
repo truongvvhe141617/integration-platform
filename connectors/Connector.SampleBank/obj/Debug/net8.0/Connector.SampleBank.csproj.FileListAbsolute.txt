@@ -28,3 +28,4 @@ D:\TEST\integration-platform\connectors\Connector.SampleBank\obj\Debug\net8.0\Co
 D:\TEST\integration-platform\connectors\Connector.SampleBank\obj\Debug\net8.0\refint\Connector.SampleBank.dll
 D:\TEST\integration-platform\connectors\Connector.SampleBank\obj\Debug\net8.0\Connector.SampleBank.pdb
 D:\TEST\integration-platform\connectors\Connector.SampleBank\obj\Debug\net8.0\ref\Connector.SampleBank.dll
+D:\TEST\integration-platform\connectors\Connector.SampleBank\obj\Debug\net8.0\Connector.SampleBank.sourcelink.json

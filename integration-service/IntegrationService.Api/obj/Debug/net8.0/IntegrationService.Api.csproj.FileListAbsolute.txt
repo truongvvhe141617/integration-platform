@@ -201,3 +201,4 @@ D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debu
 D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\Integrat.305D6D57.Up2Date
 D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\IntegrationService.Api.genruntimeconfig.cache
 D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\ref\IntegrationService.Api.dll
+D:\TEST\integration-platform\integration-service\IntegrationService.Api\obj\Debug\net8.0\IntegrationService.Api.sourcelink.json

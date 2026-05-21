@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConfigService.Api.Data.Entities;
 
-[Table("IntegrationConfigs")]
+[Table("integration_config")]
 public class IntegrationConfigEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();
@@ -31,7 +31,7 @@ public class IntegrationConfigEntity
     public List<IntegrationOperationEntity> Operations { get; set; } = new();
 }
 
-[Table("IntegrationOperations")]
+[Table("integration_operation")]
 public class IntegrationOperationEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();
@@ -50,7 +50,7 @@ public class IntegrationOperationEntity
     public List<ValidationRuleEntity> Validations { get; set; } = new();
 }
 
-[Table("RequestMappings")]
+[Table("request_mapping")]
 public class RequestMappingEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();
@@ -64,7 +64,7 @@ public class RequestMappingEntity
     public IntegrationOperationEntity Operation { get; set; } = null!;
 }
 
-[Table("ResponseMappings")]
+[Table("response_mapping")]
 public class ResponseMappingEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();
@@ -77,7 +77,7 @@ public class ResponseMappingEntity
     public IntegrationOperationEntity Operation { get; set; } = null!;
 }
 
-[Table("ValidationRules")]
+[Table("validation_rule")]
 public class ValidationRuleEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();
@@ -89,7 +89,7 @@ public class ValidationRuleEntity
     public IntegrationOperationEntity Operation { get; set; } = null!;
 }
 
-[Table("ConfigHistory")]
+[Table("config_history")]
 public class ConfigHistoryEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();
@@ -102,7 +102,7 @@ public class ConfigHistoryEntity
     [MaxLength(500)] public string? ChangeNote { get; set; }
 }
 
-[Table("AuditLogs")]
+[Table("audit_log")]
 public class AuditLogEntity
 {
     [Key] public Guid Id { get; set; } = Guid.NewGuid();

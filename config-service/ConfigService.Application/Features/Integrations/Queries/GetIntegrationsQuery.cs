@@ -5,7 +5,7 @@ using MediatR;
 namespace ConfigService.Application.Features.Integrations.Queries;
 
 public record GetIntegrationsQuery(
-    Guid TenantId, string? Search, string? Status,
+    string TenantId, string? Search, string? Status,
     string? Tags, int Page, int PageSize
 ) : IRequest<PagedResult<IntegrationConfigDto>>;
 

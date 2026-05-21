@@ -1,3 +1,5 @@
+using ConfigService.Application.Contracts;
+using ConfigService.Application.Services;
 using ConfigService.Domain.Repositories;
 using ConfigService.Infrastructure.Data;
 using ConfigService.Infrastructure.Repositories;
@@ -8,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace ConfigService.Infrastructure;
 
 /// <summary>
-/// Pattern từ iolis-instrument: tất cả DI infrastructure đăng ký tại đây.
+/// Tất cả DI infrastructure đăng ký tại đây.
 /// Program.cs chỉ gọi: builder.Services.AddInfrastructureServices(configuration)
 /// </summary>
 public static class InfrastructureServiceRegistration
@@ -16,6 +18,7 @@ public static class InfrastructureServiceRegistration
     public static IServiceCollection AddInfrastructureServices(
         this IServiceCollection services, IConfiguration configuration)
     {
+        // ── Database ──
         var connectionString = configuration.GetConnectionString("SqlServer");
         var timeoutStr = configuration["ConnectionStrings:TimeOut"];
         var retryStr = configuration["ConnectionStrings:SqlRetry"];
@@ -24,7 +27,6 @@ public static class InfrastructureServiceRegistration
 
         if (!string.IsNullOrWhiteSpace(connectionString))
         {
-            // SQL Server (production)
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString, sql =>
                 {
@@ -34,15 +36,21 @@ public static class InfrastructureServiceRegistration
         }
         else
         {
-            // InMemory fallback (dev không có SQL Server)
             services.AddDbContext<AppDbContext>(options =>
-                options.UseInMemoryDatabase("master"));
+                options.UseInMemoryDatabase("ConfigServiceDb"));
         }
 
-        // Repositories
+        // ── Repositories (Domain layer — CQRS) ──
         services.AddScoped<IIntegrationConfigRepository, IntegrationConfigRepository>();
 
-        // Redis cache
+        // ── Repositories (Legacy — backward compatible for Integration Service) ──
+        services.AddSingleton<IConfigRepository, InMemoryConfigRepository>();
+        services.AddSingleton<IConfigAuditRepository, InMemoryConfigAuditRepository>();
+
+        // ── Application Services ──
+        services.AddScoped<IConfigService, ConfigManagementService>();
+
+        // ── Cache ──
         var redisConn = configuration.GetConnectionString("Redis");
         if (!string.IsNullOrWhiteSpace(redisConn))
             services.AddStackExchangeRedisCache(opt => opt.Configuration = redisConn);
